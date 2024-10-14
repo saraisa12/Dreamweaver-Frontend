@@ -26,15 +26,13 @@ const AddEvent = () => {
     }
 
     try {
-      // Make a POST request to your server endpoint
       const response = await axios.post(
-        "http://localhost:4000/event/add", // Ensure the port matches your server
+        "http://localhost:4000/event/add",
         eventData
       )
       console.log("Event added successfully:", response.data)
 
-      // Clear form fields after successful submission
-      formRef.current.reset() // Reset the form fields
+      formRef.current.reset()
     } catch (error) {
       console.error("Error adding event:", error)
       alert(

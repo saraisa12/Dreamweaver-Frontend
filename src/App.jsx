@@ -1,11 +1,11 @@
 import "./App.css"
 import AddEvent from "./components/AddEvent"
-import Test from "./components/Test"
+import ListEvents from "./components/ListEvents"
 
 const App = () => {
   return (
     <>
-      <AddEvent />
+      <ListEvents />
     </>
   )
 }
