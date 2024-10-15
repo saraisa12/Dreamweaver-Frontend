@@ -9,28 +9,17 @@ const AddEvent = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    // Get form values using refs
-    const name = formRef.current["name"].value
-    const date = formRef.current["date"].value
-    const time = formRef.current["time"].value
-    const details = formRef.current["details"].value
-    const availableTickets = parseInt(
-      formRef.current["availableTickets"].value,
-      10
-    )
-
-    const eventData = {
-      name,
-      date,
-      time,
-      details,
-      availableTickets,
-    }
+    const formData = new FormData(formRef.current) // Create a FormData object
 
     try {
       const response = await axios.post(
         "http://localhost:4000/event/add",
-        eventData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set the appropriate content type
+          },
+        }
       )
       console.log("Event added successfully:", response.data)
 
@@ -49,24 +38,52 @@ const AddEvent = () => {
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <label htmlFor="name">Name</label>
-      <input type="text" id="name" placeholder="Event Name" required />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Event Name"
+        required
+      />
 
       <label htmlFor="date">Date</label>
-      <input type="date" id="date" placeholder="Event Date" required />
+      <input
+        type="date"
+        id="date"
+        name="date"
+        placeholder="Event Date"
+        required
+      />
 
       <label htmlFor="time">Time</label>
-      <input type="text" id="time" placeholder="Event Time" required />
+      <input
+        type="text"
+        id="time"
+        name="time"
+        placeholder="Event Time"
+        required
+      />
 
       <label htmlFor="details">Details</label>
-      <input type="text" id="details" placeholder="Event Details" required />
+      <input
+        type="text"
+        id="details"
+        name="details"
+        placeholder="Event Details"
+        required
+      />
 
       <label htmlFor="availableTickets">Available Tickets</label>
       <input
         type="number"
         id="availableTickets"
+        name="availableTickets"
         placeholder="Number of Tickets"
         required
       />
+
+      <label htmlFor="image">Image</label>
+      <input type="file" id="image" name="image" accept="image/*" />
 
       <button type="submit">Add Event</button>
     </form>
