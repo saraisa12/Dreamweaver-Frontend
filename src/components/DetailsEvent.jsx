@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom/dist'
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom/dist"
 
 const DetailsEvent = () => {
   const { id } = useParams()
@@ -15,7 +15,7 @@ const DetailsEvent = () => {
       )
       setEvent(response.data)
     } catch (error) {
-      console.error('Error fetching event details:', error)
+      console.error("Error fetching event details:", error)
       setError(error.message)
     }
   }
@@ -35,7 +35,7 @@ const DetailsEvent = () => {
   return (
     <div>
       <h1>{event.name}</h1>
-      {event.image && <img src={event.image} alt={event.name} />}{' '}
+      {event.image && <img src={event.image} alt={event.name} />}{" "}
       <p>Date: {new Date(event.date).toLocaleDateString()}</p>
       <p>Time: {event.time}</p>
       <p>Details: {event.details}</p>

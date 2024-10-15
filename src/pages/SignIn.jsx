@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { SignInUser } from '../services/Auth'
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { SignInUser } from "../services/Auth"
+import "../public/signin.css"
 
 const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
-  const initialState = { email: '', password: '' }
+  const initialState = { email: "", password: "" }
   const [formValues, setFormValues] = useState(initialState)
 
   const handleChange = (e) => {
@@ -17,9 +18,9 @@ const SignIn = ({ setUser }) => {
       const user = await SignInUser(formValues)
       setUser(user)
       setFormValues(initialState)
-      navigate('/')
+      navigate("/")
     } catch (error) {
-      console.error('Sign-in error:', error)
+      console.error("Sign-in error:", error)
     }
   }
 

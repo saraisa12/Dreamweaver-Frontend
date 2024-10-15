@@ -1,5 +1,5 @@
-import React from 'react'
-import './ReservationSuccess.css'
+import React from "react"
+import "../public/ReservationSuccess.css"
 
 const ReservationSuccess = () => {
   return (
