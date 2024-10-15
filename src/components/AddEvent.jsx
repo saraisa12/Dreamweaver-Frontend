@@ -1,41 +1,55 @@
+
+import React, { useState } from 'react'
+
 import { useRef } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "../public/AddEvent.css"
-const AddEvent = () => {
-  const formRef = useRef()
-  const navigate = useNavigate()
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+const AddEvent = () => {
+  const [name, setName] = useState('')
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+  const [details, setDetails] = useState('')
+  const [availableTickets, setAvailableTickets] = useState(0)
+  const [image, setImage] = useState(null)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+
 
     const formData = new FormData(formRef.current) // Create a FormData object
 
     try {
+      // Make POST request to add the event
       const response = await axios.post(
+
         "http://localhost:4000/event/add",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data", // Set the appropriate content type
           },
+
         }
       )
-      console.log("Event added successfully:", response.data)
 
-      formRef.current.reset()
-
-      navigate("/event/index")
+      // Reset form fields upon success
+      console.log('Event added successfully:', response.data)
+      setName('')
+      setDate('')
+      setTime('')
+      setDetails('')
+      setAvailableTickets(0)
+      setImage(null)
     } catch (error) {
-      console.error("Error adding event:", error)
-      alert(
-        "Error adding event: " +
-          (error.response ? error.response.data.message : error.message)
-      )
+      console.error('Error adding event:', error)
     }
   }
 
   return (
+
     <form ref={formRef} onSubmit={handleSubmit} className="event-form">
       <h2>Add Event</h2>
       <label htmlFor="name">Name</label>
@@ -89,6 +103,7 @@ const AddEvent = () => {
       <button type="submit" className="submit-button">
         Add Event
       </button>
+
     </form>
   )
 }

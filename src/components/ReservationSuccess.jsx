@@ -1,12 +1,13 @@
-import React from "react"
+import React from 'react'
+import './ReservationSuccess.css'
 
 const ReservationSuccess = () => {
   return (
-    <div>
-      <h1>Reservation Successful!</h1>
+    <div className="reservation-success-container">
       <p>
-        Thank you for reserving your tickets. We look forward to seeing you at
-        the event!
+        Your reservation is confirmed
+        <br />
+        <br /> Get ready for an amazing experience !
       </p>
     </div>
   )

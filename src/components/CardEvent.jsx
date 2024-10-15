@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom"
+
+import { Link } from 'react-router-dom'
+
 import "../public/cardEvent.css"
+
 const CardEvent = ({ event, handleDelete }) => {
   const baseUrl = "http://localhost:4000"
 
   return (
+
     <div className="event-card">
       {event.image && (
         <img src={`${baseUrl}/${event.image}`} alt={event.name} />
@@ -15,6 +19,7 @@ const CardEvent = ({ event, handleDelete }) => {
         </Link>
         <button onClick={() => handleDelete(event._id)}>Delete</button>
       </div>
+
     </div>
   )
 }
