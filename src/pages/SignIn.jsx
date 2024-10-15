@@ -15,9 +15,9 @@ const SignIn = ({ setUser }) => {
     e.preventDefault()
     try {
       const user = await SignInUser(formValues)
-      setUser(user) // Set the user state on successful login
+      setUser(user)
       setFormValues(initialState)
-      navigate('/') // Redirect to the Home page
+      navigate('/')
     } catch (error) {
       console.error('Sign-in error:', error)
     }
