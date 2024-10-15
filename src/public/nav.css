@@ -13,6 +13,7 @@
   font-size: 20px;
   transition: color 0.3s;
   padding: 10px;
+  font-family: "Grandstander", cursive;
 }
 
 .NavLinks a:hover {
