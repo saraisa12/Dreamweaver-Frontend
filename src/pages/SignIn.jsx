@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
 
-const SignIn = () => {
+const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
   const initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
@@ -13,10 +13,14 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const payload = await SignInUser(formValues)
-    setFormValues(initialState)
-    // Perform any additional actions with the payload, e.g., set user state
-    navigate('/feed')
+    try {
+      const user = await SignInUser(formValues)
+      setUser(user) // Set the user state on successful login
+      setFormValues(initialState)
+      navigate('/') // Redirect to the Home page
+    } catch (error) {
+      console.error('Sign-in error:', error)
+    }
   }
 
   return (
