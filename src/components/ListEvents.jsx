@@ -35,7 +35,15 @@ const ListEvents = () => {
 
   return (
     <div>
-      <h1>Event List</h1>
+      <div className="EventHeader">
+        <h1>Event</h1>
+      </div>
+      <div className="Months">
+        <button className="MonthsName">October</button>
+        <button className="MonthsName">November</button>
+        <button className="MonthsName">December</button>
+        <button className="MonthsName">January</button>
+      </div>
       {error && <p>Error: {error}</p>}
       {events.length > 0 ? (
         events.map((event) => (
@@ -46,7 +54,7 @@ const ListEvents = () => {
           />
         ))
       ) : (
-        <p>No events found.</p>
+        <p>No Events Found.</p>
       )}
     </div>
   )
