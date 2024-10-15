@@ -1,8 +1,10 @@
 import { useRef } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const AddEvent = () => {
   const formRef = useRef()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -33,6 +35,8 @@ const AddEvent = () => {
       console.log("Event added successfully:", response.data)
 
       formRef.current.reset()
+
+      navigate("/event/index")
     } catch (error) {
       console.error("Error adding event:", error)
       alert(

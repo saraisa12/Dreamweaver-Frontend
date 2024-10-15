@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom/dist"
 
 const DetailsEvent = () => {
   const { id } = useParams()
   const [event, setEvent] = useState(null)
-  const [error, setError] = useState(null) // Add error state for better error handling
+  const [error, setError] = useState(null)
 
   const getEventDetails = async () => {
     try {
@@ -15,7 +16,7 @@ const DetailsEvent = () => {
       setEvent(response.data)
     } catch (error) {
       console.error("Error fetching event details:", error)
-      setError(error.message) // Set the error message if fetching fails
+      setError(error.message)
     }
   }
 
@@ -23,13 +24,12 @@ const DetailsEvent = () => {
     getEventDetails()
   }, [id])
 
-  // Conditional rendering to avoid null reference errors
   if (error) {
     return <p>Error: {error}</p>
   }
 
   if (!event) {
-    return <p>Loading event details...</p> // Show loading message while fetching data
+    return <p>Loading event details...</p>
   }
 
   return (
@@ -38,6 +38,10 @@ const DetailsEvent = () => {
       <p>Date: {new Date(event.date).toLocaleDateString()}</p>
       <p>Time: {event.time}</p>
       <p>Details: {event.details}</p>
+
+      <button>
+        <Link to={`/event/reserve/${event._id}`}>Reserve Tickets</Link>
+      </button>
     </div>
   )
 }
