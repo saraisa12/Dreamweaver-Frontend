@@ -5,6 +5,7 @@ import AddEvent from "./components/AddEvent"
 import ListEvents from "./components/ListEvents"
 import DetailsEvent from "./components/DetailsEvent"
 import ReserveEvent from "./components/ReserveEvent"
+import ReservationSuccess from "./components/ReservationSuccess"
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
           <Route path="/event/add" element={<AddEvent />} />{" "}
           <Route path="/event/details/:id" element={<DetailsEvent />} />{" "}
           <Route path="/event/reserve/:id" element={<ReserveEvent />} />{" "}
-          {/* Route for Event Details */}
+          <Route path="/reservationsuccess" element={<ReservationSuccess />} />{" "}
         </Routes>
       </main>
     </div>

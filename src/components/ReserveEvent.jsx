@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react"
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 const ReserveEvent = () => {
   const { id } = useParams()
@@ -8,6 +8,7 @@ const ReserveEvent = () => {
   const [event, setEvent] = useState(null)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+  const navigate = useNavigate()
 
   const getEventDetails = async () => {
     try {
@@ -45,6 +46,8 @@ const ReserveEvent = () => {
       )
       setSuccess("Tickets reserved successfully!")
       formRef.current.reset()
+
+      navigate(`/reservationSuccess`)
     } catch (error) {
       console.error("Error reserving tickets:", error)
       setError(error.message)
