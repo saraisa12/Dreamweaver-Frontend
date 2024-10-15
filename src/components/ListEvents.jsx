@@ -1,5 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import CardEvent from "./CardEvent"
 
 const ListEvents = () => {
   const [events, setEvents] = useState([])
@@ -34,23 +36,14 @@ const ListEvents = () => {
   return (
     <div>
       <h1>Event List</h1>
-      {error && <p>Error: {error}</p>}{" "}
+      {error && <p>Error: {error}</p>}
       {events.length > 0 ? (
         events.map((event) => (
-          <div key={event._id}>
-            {" "}
-            <h2>{event.name}</h2>
-            <p>{event.details}</p>
-            <p>{event.date}</p>
-            <button
-              href=""
-              onClick={() => {
-                handleDelete(event._id)
-              }}
-            >
-              delete
-            </button>
-          </div>
+          <CardEvent
+            key={event._id}
+            event={event}
+            handleDelete={handleDelete}
+          />
         ))
       ) : (
         <p>No events found.</p>
