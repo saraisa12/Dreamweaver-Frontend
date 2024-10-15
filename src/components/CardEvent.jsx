@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 const CardEvent = ({ event, handleDelete }) => {
+  const baseUrl = "http://localhost:4000"
+
   return (
     <div>
       {event.image && (
         <img
-          src={event.image}
+          src={`${baseUrl}/${event.image}`}
           alt={event.name}
           style={{ width: "100%", height: "auto", borderRadius: "8px" }}
         />
