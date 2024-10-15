@@ -1,4 +1,83 @@
 body {
   margin: 0;
-  box-sizing: border-box;
+  background-image: url("/Images/Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Akaya Kanadaka", system-ui;
+  height: 100vh;
+}
+.EventHeader h1 {
+  background-color: #f1c46a;
+  padding: 30px;
+  margin: 0px 50px 25px 50px;
+  margin-top: 80px;
+  text-align: center;
+  font-family: "Akaya Kanadaka", system-ui;
+  font-style: normal;
+  font-size: 60px;
+  color: #67182e;
+  border-radius: 7px;
+}
+
+.Months {
+  background-color: #b27057;
+  padding: 20px;
+  margin: 0px 15pc 50px 15pc;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.MonthsName {
+  background-color: transparent;
+  margin: 0px 20px 0px 20px;
+  font-size: 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  overflow: hidden;
+  color: white;
+  font-family: "Akaya Kanadaka", system-ui;
+}
+.MonthsName:hover {
+  color: #67182e;
+  font-size: 35px;
+}
+
+.navBar a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  float: left;
+  margin: 10px;
+  padding: 0;
+}
+li {
+  display: inline;
+  padding-right: 20px;
+}
+
+.Greeting h1 {
+  text-transform: uppercase;
+  color: white;
+  padding-left: 70px;
+  text-align: center;
+  padding-top: 8pc;
+  font-size: 60px;
+}
+
+.Greeting p {
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  padding-left: 60px;
+}
+
+.NavLinks {
+  text-align: right;
+  margin: 30px;
+  padding-right: 20px;
 }
