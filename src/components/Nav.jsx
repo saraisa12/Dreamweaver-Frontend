@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import "../public/nav.css"
 
 const Nav = ({ user, handleLogOut }) => {
   // Check if user is logged in
