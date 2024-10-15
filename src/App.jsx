@@ -1,7 +1,13 @@
 import "./App.css"
+import AddEvent from "./components/AddEvent"
+import ListEvents from "./components/ListEvents"
 
 const App = () => {
-  return <></>
+  return (
+    <>
+      <ListEvents />
+    </>
+  )
 }
 
 export default App
