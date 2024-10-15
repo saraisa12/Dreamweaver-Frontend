@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-
+import "../public/AddEvent.css"
 const AddEvent = () => {
   const formRef = useRef()
   const navigate = useNavigate()
@@ -36,7 +36,8 @@ const AddEvent = () => {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit} className="event-form">
+      <h2>Add Event</h2>
       <label htmlFor="name">Name</label>
       <input
         type="text"
@@ -85,7 +86,9 @@ const AddEvent = () => {
       <label htmlFor="image">Image</label>
       <input type="file" id="image" name="image" accept="image/*" />
 
-      <button type="submit">Add Event</button>
+      <button type="submit" className="submit-button">
+        Add Event
+      </button>
     </form>
   )
 }
