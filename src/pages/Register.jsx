@@ -18,8 +18,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // Basic validation for password confirmation
     if (formValues.password !== formValues.confirmPassword) {
       alert('Passwords do not match!')
       return
@@ -32,7 +30,6 @@ const Register = () => {
         password: formValues.password
       })
       setFormValues(initialState)
-      console.log(formValues)
       navigate('/signin')
     } catch (error) {
       console.error('Registration error:', error)
@@ -41,42 +38,55 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          value={formValues.name}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={formValues.email}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={formValues.password}
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={handleChange}
-          value={formValues.confirmPassword}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
+    <div className="container">
+      <div className="auth-card">
+        <h2>Register</h2>
+        <div className="input-box">
+          <form onSubmit={handleSubmit}>
+            <div className="auth-input-wrapper">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                onChange={handleChange}
+                value={formValues.name}
+                required
+              />
+            </div>
+            <div className="auth-input-wrapper">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={formValues.email}
+                required
+              />
+            </div>
+            <div className="auth-input-wrapper">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formValues.password}
+                required
+              />
+            </div>
+            <div className="auth-input-wrapper">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+                value={formValues.confirmPassword}
+                required
+              />
+            </div>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

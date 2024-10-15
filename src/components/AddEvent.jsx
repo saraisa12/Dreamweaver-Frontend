@@ -1,73 +1,95 @@
-import { useRef } from "react"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const AddEvent = () => {
-  const formRef = useRef()
-  const navigate = useNavigate()
+  const [name, setName] = useState('')
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+  const [details, setDetails] = useState('')
+  const [availableTickets, setAvailableTickets] = useState(0)
+  const [image, setImage] = useState(null)
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData()
 
-    // Get form values using refs
-    const name = formRef.current["name"].value
-    const date = formRef.current["date"].value
-    const time = formRef.current["time"].value
-    const details = formRef.current["details"].value
-    const availableTickets = parseInt(
-      formRef.current["availableTickets"].value,
-      10
-    )
+    // Append event data to FormData
+    formData.append('name', name)
+    formData.append('date', date)
+    formData.append('time', time)
+    formData.append('details', details)
+    formData.append('availableTickets', availableTickets)
 
-    const eventData = {
-      name,
-      date,
-      time,
-      details,
-      availableTickets,
+    // Append image if selected
+    if (image) {
+      formData.append('image', image)
     }
 
     try {
+      // Make POST request to add the event
       const response = await axios.post(
-        "http://localhost:4000/event/add",
-        eventData
+        'http://localhost:4000/event/add',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
       )
-      console.log("Event added successfully:", response.data)
 
-      formRef.current.reset()
-
-      navigate("/event/index")
+      // Reset form fields upon success
+      console.log('Event added successfully:', response.data)
+      setName('')
+      setDate('')
+      setTime('')
+      setDetails('')
+      setAvailableTickets(0)
+      setImage(null)
     } catch (error) {
-      console.error("Error adding event:", error)
-      alert(
-        "Error adding event: " +
-          (error.response ? error.response.data.message : error.message)
-      )
+      console.error('Error adding event:', error)
     }
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" placeholder="Event Name" required />
-
-      <label htmlFor="date">Date</label>
-      <input type="date" id="date" placeholder="Event Date" required />
-
-      <label htmlFor="time">Time</label>
-      <input type="text" id="time" placeholder="Event Time" required />
-
-      <label htmlFor="details">Details</label>
-      <input type="text" id="details" placeholder="Event Details" required />
-
-      <label htmlFor="availableTickets">Available Tickets</label>
+    <form onSubmit={handleSubmit}>
       <input
-        type="number"
-        id="availableTickets"
-        placeholder="Number of Tickets"
+        type="text"
+        placeholder="Event Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         required
       />
-
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Time"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+        required
+      />
+      <textarea
+        placeholder="Details"
+        value={details}
+        onChange={(e) => setDetails(e.target.value)}
+        required
+      />
+      <input
+        type="number"
+        placeholder="Available Tickets"
+        value={availableTickets}
+        onChange={(e) => setAvailableTickets(e.target.value)}
+        required
+      />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
+      />
       <button type="submit">Add Event</button>
     </form>
   )

@@ -24,26 +24,36 @@ const SignIn = ({ setUser }) => {
   }
 
   return (
-    <div className="signin">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={formValues.email}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={formValues.password}
-          required
-        />
-        <button type="submit">Sign In</button>
-      </form>
+    <div className="container">
+      <div className="auth-card">
+        <h2>SIGN IN</h2>
+        <div className="input-box">
+          <form onSubmit={handleSubmit}>
+            <img className="ferris-wheel" src="" />
+            <div className="auth-input-wrapper">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={formValues.email}
+                required
+              />
+            </div>
+            <div className="auth-input-wrapper">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formValues.password}
+                required
+              />
+            </div>
+            <button type="submit">Sign In</button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,18 +1,19 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import CardEvent from "./CardEvent"
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import CardEvent from './CardEvent'
 
 const ListEvents = () => {
   const [events, setEvents] = useState([])
-  const [error, setError] = useState(null) //
+  const [error, setError] = useState(null)
+
   const getEvents = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/event/index")
-      console.log("Retrieved data:", response.data)
+      const response = await axios.get('http://localhost:4000/event/index')
+      console.log('Retrieved data:', response.data)
       setEvents(response.data)
     } catch (error) {
-      console.error("Error fetching events:", error)
+      console.error('Error fetching events:', error)
       setError(error.message)
     }
   }
@@ -20,11 +21,10 @@ const ListEvents = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/event/delete/${id}`)
-      console.log("Event deleted successfully")
-
+      console.log('Event deleted successfully')
       getEvents()
     } catch (error) {
-      console.error("Error deleting event:", error)
+      console.error('Error deleting event:', error)
       setError(error.message)
     }
   }

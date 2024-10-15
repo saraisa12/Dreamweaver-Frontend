@@ -5,7 +5,7 @@ const Nav = ({ user, handleLogOut }) => {
   const userOptions = user ? (
     <nav>
       <NavLink to="/" onClick={handleLogOut} activeClassName="active-link">
-        Sign Out
+        LogOut
       </NavLink>
       <NavLink to="/feed" activeClassName="active-link">
         Home
