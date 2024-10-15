@@ -1,5 +1,10 @@
+
 import React, { useState } from 'react'
-import axios from 'axios'
+
+import { useRef } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import "../public/AddEvent.css"
 
 const AddEvent = () => {
   const [name, setName] = useState('')
@@ -13,27 +18,20 @@ const AddEvent = () => {
     e.preventDefault()
     const formData = new FormData()
 
-    // Append event data to FormData
-    formData.append('name', name)
-    formData.append('date', date)
-    formData.append('time', time)
-    formData.append('details', details)
-    formData.append('availableTickets', availableTickets)
 
-    // Append image if selected
-    if (image) {
-      formData.append('image', image)
-    }
+    const formData = new FormData(formRef.current) // Create a FormData object
 
     try {
       // Make POST request to add the event
       const response = await axios.post(
-        'http://localhost:4000/event/add',
+
+        "http://localhost:4000/event/add",
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data'
-          }
+            "Content-Type": "multipart/form-data", // Set the appropriate content type
+          },
+
         }
       )
 
@@ -51,46 +49,61 @@ const AddEvent = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+
+    <form ref={formRef} onSubmit={handleSubmit} className="event-form">
+      <h2>Add Event</h2>
+      <label htmlFor="name">Name</label>
       <input
         type="text"
+        id="name"
+        name="name"
         placeholder="Event Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
         required
       />
+
+      <label htmlFor="date">Date</label>
       <input
         type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+        id="date"
+        name="date"
+        placeholder="Event Date"
         required
       />
+
+      <label htmlFor="time">Time</label>
       <input
         type="text"
-        placeholder="Time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
+        id="time"
+        name="time"
+        placeholder="Event Time"
         required
       />
-      <textarea
-        placeholder="Details"
-        value={details}
-        onChange={(e) => setDetails(e.target.value)}
+
+      <label htmlFor="details">Details</label>
+      <input
+        type="text"
+        id="details"
+        name="details"
+        placeholder="Event Details"
         required
       />
+
+      <label htmlFor="availableTickets">Available Tickets</label>
       <input
         type="number"
-        placeholder="Available Tickets"
-        value={availableTickets}
-        onChange={(e) => setAvailableTickets(e.target.value)}
+        id="availableTickets"
+        name="availableTickets"
+        placeholder="Number of Tickets"
         required
       />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
-      />
-      <button type="submit">Add Event</button>
+
+      <label htmlFor="image">Image</label>
+      <input type="file" id="image" name="image" accept="image/*" />
+
+      <button type="submit" className="submit-button">
+        Add Event
+      </button>
+
     </form>
   )
 }

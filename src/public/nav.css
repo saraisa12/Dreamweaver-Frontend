@@ -1,0 +1,24 @@
+.NavLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+
+.NavLinks a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 20px;
+  transition: color 0.3s;
+  padding: 10px;
+}
+
+.NavLinks a:hover {
+  color: #f0f0f0;
+}
+
+.active-link {
+  border-bottom: 2px solid white;
+}

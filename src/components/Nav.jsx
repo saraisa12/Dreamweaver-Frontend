@@ -1,9 +1,10 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
+import "../public/nav.css"
 
 const Nav = ({ user, handleLogOut }) => {
   // Check if user is logged in
   const userOptions = user ? (
-    <nav>
+    <nav className="NavLinks">
       <NavLink to="/" onClick={handleLogOut} activeClassName="active-link">
         LogOut
       </NavLink>
@@ -14,7 +15,7 @@ const Nav = ({ user, handleLogOut }) => {
     </nav>
   ) : (
     // Options for users who are not logged in
-    <nav>
+    <nav className="NavLinks">
       <NavLink to="/" activeClassName="active-link" exact>
         Home
       </NavLink>

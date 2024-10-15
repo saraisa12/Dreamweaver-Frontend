@@ -1,0 +1,45 @@
+.header {
+  background-color: #f1c46a;
+  width: 80%;
+  height: 120px;
+  font-size: 60px;
+  text-align: center;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  margin: 0 auto; /* Center the header div horizontally in the parent */
+  color: #67182e;
+}
+
+.nav {
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: center; /* Center the nav items */
+  background-color: #e8c6a1; /* Background color of the nav bar */
+  padding: 10px 0; /* Padding for the nav bar */
+  width: 50%;
+  margin: 20px auto;
+  font-weight: 700;
+}
+
+.nav-item {
+  color: #f6e8d7;
+  font-size: 20px; /* Font size */
+  text-decoration: none; /* Remove underline from links */
+  padding: 10px 20px; /* Padding around each nav item */
+  margin: 0 5px; /* Space between items */
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+
+.card-container {
+  display: flex; /* Enable flexbox layout */
+  flex-wrap: wrap; /* Allow wrapping to the next line if there are too many cards */
+  justify-content: center;
+  gap: 20px; /* Space between the cards */
+  margin-top: 20px; /* Space above the card container */
+  width: 80vw;
+
+  margin: 0 auto;
+}
