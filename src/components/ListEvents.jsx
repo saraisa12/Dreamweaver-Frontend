@@ -1,16 +1,20 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import CardEvent from "./CardEvent"
+import "../public/listEvents.css"
 
 const ListEvents = () => {
   const [events, setEvents] = useState([])
-  const [error, setError] = useState(null) //
+  const [filteredEvents, setFilteredEvents] = useState([])
+  const [error, setError] = useState(null)
+  const [selectedMonth, setSelectedMonth] = useState(null)
+
   const getEvents = async () => {
     try {
       const response = await axios.get("http://localhost:4000/event/index")
       console.log("Retrieved data:", response.data)
       setEvents(response.data)
+      setFilteredEvents(response.data) // Initialize filtered events
     } catch (error) {
       console.error("Error fetching events:", error)
       setError(error.message)
@@ -21,7 +25,6 @@ const ListEvents = () => {
     try {
       await axios.delete(`http://localhost:4000/event/delete/${id}`)
       console.log("Event deleted successfully")
-
       getEvents()
     } catch (error) {
       console.error("Error deleting event:", error)
@@ -29,33 +32,68 @@ const ListEvents = () => {
     }
   }
 
+  const filterEventsByMonth = (month) => {
+    if (month !== null) {
+      const filtered = events.filter((event) => {
+        const eventDate = new Date(event.date)
+        const eventMonth = eventDate.getMonth()
+        return eventMonth === month
+      })
+      setFilteredEvents(filtered)
+      setSelectedMonth(month)
+    } else {
+      setFilteredEvents(events) // Reset to show all events
+      setSelectedMonth(null)
+    }
+  }
+
   useEffect(() => {
     getEvents()
   }, [])
 
+  // Get current month
+  const currentMonth = new Date().getMonth()
+  const monthButtons = Array.from({ length: 4 }, (_, index) => {
+    return (currentMonth + index) % 12 // Wrap around using modulo
+  })
+
   return (
     <div>
-      <div className="EventHeader">
-        <h1>Event</h1>
-      </div>
-      <div className="Months">
-        <button className="MonthsName">October</button>
-        <button className="MonthsName">November</button>
-        <button className="MonthsName">December</button>
-        <button className="MonthsName">January</button>
-      </div>
+      <div className="header">EVENTS</div>
       {error && <p>Error: {error}</p>}
-      {events.length > 0 ? (
-        events.map((event) => (
-          <CardEvent
-            key={event._id}
-            event={event}
-            handleDelete={handleDelete}
-          />
-        ))
-      ) : (
-        <p>No Events Found.</p>
-      )}
+      <div className="nav">
+        <a
+          className={`nav-item ${selectedMonth === null ? "active" : ""}`}
+          onClick={() => filterEventsByMonth(null)}
+        >
+          All Events
+        </a>
+        {monthButtons.map((month) => (
+          <a
+            className={`nav-item ${selectedMonth === month ? "active" : ""}`}
+            key={month}
+            onClick={() => filterEventsByMonth(month)}
+          >
+            {new Date(0, month).toLocaleString("default", { month: "long" })}
+          </a>
+        ))}
+      </div>
+
+      <div className="card-container">
+        {" "}
+        {/* Added card-container div */}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event) => (
+            <CardEvent
+              key={event._id}
+              event={event}
+              handleDelete={handleDelete}
+            />
+          ))
+        ) : (
+          <p>No events found.</p>
+        )}
+      </div>
     </div>
   )
 }
