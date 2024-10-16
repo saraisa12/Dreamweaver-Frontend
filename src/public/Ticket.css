@@ -1,0 +1,88 @@
+.ticket-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #e8dfd0a9;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 500px;
+}
+
+.ticket-left {
+  background-image: url('/Images/5.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-right {
+  padding: 20px;
+  background-color: #f6e8d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 333px;
+  margin-top: 64px;
+}
+
+.ticket-right h1 {
+  font-size: 30px;
+  color: #af1c5d;
+  margin-bottom: -3px;
+  text-align: center;
+}
+
+.ticket-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ticket-right label {
+  margin-bottom: 2px;
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+}
+
+.ticket-right input {
+  width: 100%; /* Set the width to 100% of the parent */
+  margin-bottom: 2px;
+  padding: 10px;
+  border: 1px solid #dddddda2;
+  background-color: rgba(255, 255, 255, 0.44);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.SubmitButton {
+  padding: 10px;
+  float: right;
+  margin-left: 100px;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: -90px;
+}
+
+.submit-button:hover {
+  background-color: #f89406;
+}
+
+.success-message {
+  color: green;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
