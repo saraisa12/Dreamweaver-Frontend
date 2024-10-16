@@ -1,7 +1,7 @@
-import { useRef } from "react"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import "../public/AddEvent.css"
+import { useRef } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import '../public/AddEvent.css'
 
 const AddEvent = () => {
   const formRef = useRef()
@@ -14,23 +14,23 @@ const AddEvent = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/event/add",
+        'http://localhost:4000/event/add',
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Set the appropriate content type
-          },
+            'Content-Type': 'multipart/form-data' // Set the appropriate content type
+          }
         }
       )
-      console.log("Event added successfully:", response.data)
+      console.log('Event added successfully:', response.data)
 
       formRef.current.reset()
 
-      navigate("/event/index")
+      navigate('/event/index')
     } catch (error) {
-      console.error("Error adding event:", error)
+      console.error('Error adding event:', error)
       alert(
-        "Error adding event: " +
+        'Error adding event: ' +
           (error.response ? error.response.data.message : error.message)
       )
     }
