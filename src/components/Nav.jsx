@@ -1,16 +1,24 @@
-import { NavLink } from "react-router-dom"
-import "../public/nav.css"
+import { NavLink } from 'react-router-dom'
+import '../public/nav.css'
 
 const Nav = ({ user, handleLogOut }) => {
+  const userRole = localStorage.getItem('role')
+
   // Check if user is logged in
   const userOptions = user ? (
     <nav className="NavLinks">
       <NavLink to="/" onClick={handleLogOut} activeClassName="active-link">
         LogOut
       </NavLink>
-      <NavLink to="/feed" activeClassName="active-link">
+      <NavLink to="/" activeClassName="active-link">
         Home
       </NavLink>
+
+      {userRole === 'admin' && (
+        <NavLink to="/event/add" activeClassName="active-link">
+          Add Event
+        </NavLink>
+      )}
       {/* Removed the email greeting */}
     </nav>
   ) : (

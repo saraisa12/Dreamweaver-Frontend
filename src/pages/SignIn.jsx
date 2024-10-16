@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { SignInUser } from "../services/Auth"
-import "../public/signin.css"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { SignInUser } from '../services/Auth'
+import '../public/signin.css'
 
 const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
-  const initialState = { email: "", password: "" }
+  const initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
 
   const handleChange = (e) => {
@@ -16,11 +16,12 @@ const SignIn = ({ setUser }) => {
     e.preventDefault()
     try {
       const user = await SignInUser(formValues)
-      setUser(user)
+      setUser({ ...user, role: user.role }) // Store the user's role
+      localStorage.setItem('role', user.role) // Store role in localStorage
       setFormValues(initialState)
-      navigate("/")
+      navigate('/')
     } catch (error) {
-      console.error("Sign-in error:", error)
+      console.error('Sign-in error:', error)
     }
   }
 

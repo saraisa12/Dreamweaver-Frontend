@@ -1,15 +1,15 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { RegisterUser } from "../services/Auth"
-import "../public/signin.css"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { RegisterUser } from '../services/Auth'
+import '../public/signin.css'
 
 const Register = () => {
   const navigate = useNavigate()
   const initialState = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   }
   const [formValues, setFormValues] = useState(initialState)
 
@@ -20,7 +20,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (formValues.password !== formValues.confirmPassword) {
-      alert("Passwords do not match!")
+      alert('Passwords do not match!')
       return
     }
 
@@ -28,13 +28,13 @@ const Register = () => {
       await RegisterUser({
         name: formValues.name,
         email: formValues.email,
-        password: formValues.password,
+        password: formValues.password
       })
       setFormValues(initialState)
-      navigate("/signin")
+      navigate('/signin')
     } catch (error) {
-      console.error("Registration error:", error)
-      alert("Registration failed. Please try again.")
+      console.error('Registration error:', error)
+      alert('Registration failed. Please try again.')
     }
   }
 

@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import '../public/cardEvent.css'
 
-import "../public/cardEvent.css"
-
-const CardEvent = ({ event, handleDelete }) => {
-  const baseUrl = "http://localhost:4000"
+const CardEvent = ({ event, handleDelete, isAdmin }) => {
+  const baseUrl = 'http://localhost:4000'
 
   return (
     <div className="event-card">
@@ -16,7 +15,10 @@ const CardEvent = ({ event, handleDelete }) => {
           <button>{event.name}</button>
         </Link>
 
-        <button onClick={() => handleDelete(event._id)}>Delete</button>
+        {/* Conditionally render the delete button only for admins */}
+        {isAdmin && (
+          <button onClick={() => handleDelete(event._id)}>Delete</button>
+        )}
       </div>
     </div>
   )
