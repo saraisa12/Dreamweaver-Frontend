@@ -84,7 +84,7 @@ const AddEvent = () => {
         required
       />
 
-      <label htmlFor="image">Image</label>
+      <label htmlFor="image">Event Image</label>
       <input type="file" id="image" name="image" accept="image/*" />
 
       <button type="submit" className="submit-button">
