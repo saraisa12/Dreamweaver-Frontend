@@ -87,7 +87,7 @@ const AddEvent = () => {
       <label htmlFor="image">Event Image</label>
       <input type="file" id="image" name="image" accept="image/*" />
 
-      <button type="submit" className="submit-button">
+      <button type="submit" className="submit-button-event">
         Add Event
       </button>
     </form>

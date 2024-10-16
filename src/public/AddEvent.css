@@ -9,27 +9,27 @@
   justify-content: center;
 }
 
-h2 {
+.event-form h2 {
   color: #af1c5d;
   margin-top: 20px;
   padding-top: 50px;
   text-align: center;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 30px;
   letter-spacing: 1px;
 }
 
-label {
+.event-form label {
   margin-top: 10px;
   margin-left: 40px;
   display: block;
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="number"],
-input[type="file"] {
+.event-form input[type='text'],
+.event-form input[type='date'],
+.event-form input[type='number'],
+.event-form input[type='file'] {
   width: 80%;
   padding: 10px;
   margin: 5px 0 15px;
@@ -39,11 +39,11 @@ input[type="file"] {
   box-sizing: border-box;
 }
 
-input[type="file"] {
+.event-form input[type='file'] {
   padding: 5px;
 }
 
-.submit-button {
+.submit-button-event {
   background-color: #af1c5d;
   color: white;
   border: none;

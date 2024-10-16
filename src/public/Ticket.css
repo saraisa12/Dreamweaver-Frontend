@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   width: 40%;
   height: 333px;
   margin-top: 64px;
@@ -37,13 +38,14 @@
 .ticket-right h1 {
   font-size: 30px;
   color: #af1c5d;
-  margin-bottom: -3px;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
 .ticket-right form {
   display: flex;
   flex-direction: column;
+  margin: 0 20px;
+
   gap: 2px;
 }
 
@@ -55,7 +57,7 @@
 }
 
 .ticket-right input {
-  width: 100%; /* Set the width to 100% of the parent */
+  width: 80%; /* Set the width to 100% of the parent */
   margin-bottom: 2px;
   padding: 10px;
   border: 1px solid #dddddda2;
@@ -73,8 +75,8 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: -90px;
+  margin-top: 80px;
+  margin-bottom: -200px;
 }
 
 .submit-button:hover {
